@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-# --- Custom Style: Modern Gradient & Buttons ---
+# Custom Style: Modern Gradient & Buttons 
 st.markdown("""
     <style>
     .stApp {
@@ -33,7 +33,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Banner Image (now the 3rd image comes in the first place) ---
+#  Banner Image
 st.image('ccc.jpeg', caption="App Banner", use_container_width=True)
 
 st.markdown("""
@@ -45,7 +45,7 @@ st.markdown("""
 
 st.header("Predict Your Salary with Style and Insight")
 
-# --- Load Model, Encoder, Data ---
+#  Load Model, Encoder, Data 
 with open('model/salary_model.pkl', 'rb') as f:
     model = pickle.load(f)
 with open('model/encoder.pkl', 'rb') as f:
@@ -53,7 +53,7 @@ with open('model/encoder.pkl', 'rb') as f:
 
 data = pd.read_csv('data/employee_data.csv')
 
-# --- Dynamic User Choices from Data ---
+#  Dynamic User Choices from Data 
 genders = sorted(data['Gender'].dropna().unique())
 educations = sorted(data['Education Level'].dropna().unique())
 job_titles = sorted(data['Job Title'].dropna().unique())
@@ -77,7 +77,7 @@ with st.container():
         salary_pred = model.predict(input_final)
         st.success(f"🎊 Predicted Salary: ${salary_pred[0]:,.2f}")
 
-        # --- Dynamic result image based on Salary Range ---
+        #  Dynamic result image based on Salary Range 
         if salary_pred[0] > 100000:
             st.image("rrr.jpeg", caption="You're in the top bracket!", width=250, use_container_width=True)
         # elif salary_pred[0] < 50000:
@@ -120,6 +120,6 @@ fig2 = px.scatter(
 )
 st.plotly_chart(fig2)
 
-# --- Sidebar Logo/Branding (ensure this is a distinctive image) ---
+#  Sidebar Logo/Branding (ensure this is a distinctive image) 
 st.sidebar.image('bbb.jpeg', caption='Your Company', width=120, use_container_width=True)
 st.sidebar.markdown("#### Made with ❤️ using Streamlit ")
